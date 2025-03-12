@@ -180,3 +180,35 @@ To efficiently implement an LRU Cache, use:
 4. **On "Put" Operation**:
    - If the key exists, update its value and move it to the front.
    - If full, remove the LRU node (just before the head) and insert the new node at the front.
+
+## Walkthrough with Example
+
+**Initialize LRU Cache with Capacity 3**
+
+- The cache is empty at the beginning.
+
+**Insert (1, 10) → Cache: (1,10)**
+
+- Since the cache is empty, (1,10) is inserted.
+
+**Insert (2, 20) → Cache: (2,20) → (1,10)**
+
+- The cache is not full, so (2,20) is inserted at the front.
+
+**Insert (3, 30) → Cache: (3,30) → (2,20) → (1,10)**
+
+- The cache is still not full, so (3,30) is inserted at the front.
+
+**Access Key 1 (GET 1)**
+
+- Key 1 is found with value 10, and it is moved to the front.
+- Cache after access: (1,10) → (3,30) → (2,20)
+
+**Insert (4, 40) → Evicts LRU Key (2)**
+
+- The cache is full, so the least recently used key (2) is evicted.
+- Cache after insertion: (4,40) → (1,10) → (3,30)
+
+**Access Key 2 (GET 2)**
+
+- Since key 2 was evicted, it is not found, and -1 is returned.
